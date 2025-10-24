@@ -202,7 +202,7 @@ def summarize(session: Session) -> DataFrame:
             "pin_uid": pin.uid,
             "xtal_plate": xtal_plate.name,
             "xtal_well_type": xtal_well_type.name,
-            "lsdc_sample_name": f"{project.target}-{pin.uid}",
+            "xtal_id": f"{project.target}-{pin.uid}",
             "catalog_id": library_well.catalog_id,
             "smiles": library_well.smiles,
             "soak_min": round(
@@ -213,6 +213,8 @@ def summarize(session: Session) -> DataFrame:
                 (pin.time_departure.timestamp() -
                  xtal_well.time_arrival.timestamp()), 1
             ),
+            "transfer_volume": echo_transfer.transfer_volume,
+            "drop_volume": xtal_plate.drop_volume,
         }
         new_df = DataFrame([row_entry])
         df = pd.concat([df, new_df], ignore_index=True)
