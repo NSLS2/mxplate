@@ -85,7 +85,7 @@ class IngestHarvestingDataWidget:
                         xtal_well.harvest_comment = row["Comment"]
                         xtal_well.harvesting_status = True
                         xtal_well.time_arrival = pd.to_datetime(
-                            row["TimeArrival"], format="%d/%m/%Y %H:%M:%S"
+                                row["TimeArrival"], format="%d/%m/%Y %H:%M:%S"
                         )
                         echo_transfer = (
                             self.session.query(EchoTransfer)
