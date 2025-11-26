@@ -63,6 +63,10 @@ class IngestHarvestingDataWidget:
                     puck_names=list(puck_names),
                 )
 
+                for puck in puck_names:
+                    if puck not in puck_references.keys():
+                        raise ValueError(f"Missing puck reference for {puck}, likely unable to find matching puck_type in database")
+
                 if len(self.df["PlateID"].unique()) > 1:
                     raise ValueError("Cannot ingest csv with multiple plate names")
 
