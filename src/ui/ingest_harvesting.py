@@ -63,7 +63,7 @@ class IngestHarvestingDataWidget:
                     puck_names=list(puck_names),
                 )
 
-                for puck in puck_names:
+                for puck in [p for p in puck_names if pd.notna(p)]: # failed mounts result in nan puck names
                     if puck not in puck_references.keys():
                         raise ValueError(f"Missing puck reference for {puck}, likely unable to find matching puck_type in database")
 
